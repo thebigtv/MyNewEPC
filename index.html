@@ -1045,8 +1045,6 @@
 
       // Always set year fallback
       const yr = document.getElementById('yr'); if (yr && !yr.textContent) yr.textContent = new Date().getFullYear();
-      buildAreaGrid('Your Town, Nearby Town, Another Area');
-
       setTimeout(() => loader.classList.add('hidden'), 700);
     }
 
