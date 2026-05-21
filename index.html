@@ -895,13 +895,6 @@
       const photo  = row['Photo URL']          || '';
       const heroPhoto = document.getElementById('hero-photo');
 
-if(settings.PhotoURL){
-
-  heroPhoto.src = settings.PhotoURL.trim();
-
-  heroPhoto.style.display = 'block';
-}
-
       const allTowns  = buildAreaGrid(towns, extra);
       const shortArea = shortTownList(allTowns);
 
