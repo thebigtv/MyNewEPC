@@ -969,7 +969,6 @@
       setLinks(phone, email);
 
       // Photos
-      console.log(photo);
       if (photo) {
         const hw = document.getElementById('hero-photo-wrap');
         if (hw) hw.innerHTML = `<img src="${photo}" alt="Photo of ${name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none'" />`;
