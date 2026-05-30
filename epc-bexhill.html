@@ -68,7 +68,7 @@
 <header>
  <div class="container header-inner">
    <div class="logo">Bexhill EPC Services</div>
-   <a class="header-phone" href="tel:01234567890">Call Now</a>
+   <a id="hdr-phone" class="header-phone" href="tel:01234567890">Call Now</a>
  </div>
 </header>
 
@@ -79,6 +79,7 @@
      <div class="hero-location">Domestic Energy Assessor Covering Bexhill &amp; Surrounding Areas</div>
      <p>Need an Energy Performance Certificate in Bexhill-on-Sea? Fast, affordable EPC certificates for homeowners, landlords and estate agents across Bexhill, Hastings, Eastbourne and nearby areas.</p>
      <p>Same and next-day appointments available with fast digital delivery of your EPC certificate.</p>
+     <div style="margin-bottom:18px;"><span id="price-badge" style="background:rgba(200,146,42,0.15);color:#C8922A;font-weight:700;padding:8px 18px;border-radius:100px;font-size:1rem;">From £XX</span></div>
      <div class="hero-buttons">
        <a href="tel:01234567890" class="btn btn-primary">Call Now</a>
        <a href="index.html#contact" class="btn btn-secondary">Book Your EPC</a>
@@ -160,7 +161,7 @@
      </div>
      <div class="faq-item">
        <h3>How quickly can I get an EPC certificate?</h3>
-       <p>Same and next-day appointments are often available, with certificates typically delivered digitally within 24 hours.</p>
+       <p>Same and next-day appointments are often available, with certificates typically delivered digitally within <span class="turnaround-display">24 hours</span>.</p>
      </div>
      <div class="faq-item">
        <h3>Do landlords need an EPC in Bexhill?</h3>
@@ -191,6 +192,108 @@
    <p style="margin-top:10px;">Looking for more EPC information? <a href="index.html">Visit our main EPC website</a></p>
  </div>
 </footer>
+
+
+ <!-- MOBILE STICKY CALL BAR -->
+ <a id="mob-call" href="tel:01234567890" style="display:flex;position:fixed;bottom:0;left:0;right:0;z-index:800;background:#1A7A4A;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1.05rem;padding:17px 20px;align-items:center;justify-content:center;gap:10px;border-top:3px solid rgba(255,255,255,0.15);box-shadow:0 -4px 20px rgba(0,0,0,0.2);text-decoration:none;">
+   Tap to Call: 01234567890
+ </a>
+ <style>@media(min-width:768px){#mob-call{display:none!important;}}</style>
+
+
+  <script>
+    var SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTb4g3K2c__kBay4SQK6T-YyLpy8h-YmZ4SPPO1_a35NY1D_87-92stgCQqIGDoRsfUX-C1Qo3_JDrH/pub?gid=132796952&single=true&output=csv";
+
+    function parseCSV(text) {
+      var lines = text.trim().split("\n");
+      if (lines.length < 2) return null;
+      var headers = splitLine(lines[0]);
+      var values  = splitLine(lines[1]);
+      var row = {};
+      headers.forEach(function(h, i) {
+        row[h.trim()] = (values[i] || "").trim().replace(/^"|"$/g, "");
+      });
+      return row;
+    }
+
+    function splitLine(line) {
+      var result = []; var cur = ""; var inQ = false;
+      for (var i = 0; i < line.length; i++) {
+        var c = line[i];
+        if (c === '"') { inQ = !inQ; }
+        else if (c === "," && !inQ) { result.push(cur); cur = ""; }
+        else { cur += c; }
+      }
+      result.push(cur);
+      return result;
+    }
+
+    function cleanPhone(p) { return p.replace(/\s+/g, ""); }
+
+    function loadDynamicDetails() {
+      fetch(SHEET_URL + "&cachebust=" + Date.now())
+        .then(function(res) { return res.text(); })
+        .then(function(text) {
+          var row = parseCSV(text);
+          if (!row) return;
+
+          var phone  = row["Phone"]              || "";
+          var price  = row["Starting Price"]     || "";
+          var email  = row["Email"]              || "";
+          var accred = row["Accreditation Body"] || "";
+          var regNo  = row["Reg Number"]         || "";
+          var turnar = row["Turnaround"]         || "24 hours";
+          var priceN = price.replace(/[£from\s]/gi, "");
+
+          // Update all tel: links
+          if (phone) {
+            var tel = "tel:" + cleanPhone(phone);
+            document.querySelectorAll('a[href="tel:01234567890"]').forEach(function(el) {
+              el.href = tel;
+            });
+            // Header
+            var hdr = document.getElementById("hdr-phone");
+            if (hdr) { hdr.href = tel; hdr.textContent = phone; }
+            // Mobile sticky bar
+            var mob = document.getElementById("mob-call");
+            if (mob) { mob.href = tel; mob.textContent = "Tap to Call: " + phone; }
+            // Footer phone
+            var fp = document.getElementById("footer-phone");
+            if (fp) fp.textContent = phone;
+          }
+
+          // Price badge
+          if (priceN) {
+            var pb = document.getElementById("price-badge");
+            if (pb) pb.textContent = "From \u00a3" + priceN;
+          }
+
+          // Email
+          if (email) {
+            var ea = document.getElementById("footer-email");
+            if (ea) { ea.href = "mailto:" + email; ea.textContent = email; }
+          }
+
+          // Accreditation + reg number
+          if (accred) {
+            var ad = document.getElementById("footer-accred");
+            if (ad) ad.textContent = accred + (regNo ? " \u00b7 Reg: " + regNo : "");
+          }
+
+          // Turnaround - update any element with class turnaround-display
+          if (turnar) {
+            document.querySelectorAll(".turnaround-display").forEach(function(el) {
+              el.textContent = turnar;
+            });
+          }
+
+        })
+        .catch(function(e) { console.warn("Sheet fetch failed - using static fallback", e); });
+    }
+
+    loadDynamicDetails();
+  </script>
+
 
 </body>
 </html>
