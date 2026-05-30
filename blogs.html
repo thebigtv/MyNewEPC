@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Articles</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+body{
+font-family:Arial, sans-serif;
+background:#f5f7fa;
+color:#222;
+line-height:1.6;
+}
+header{
+background:#0f172a;
+color:white;
+padding:40px 20px;
+text-align:center;
+}
+header h1{
+font-size:2.2rem;
+margin-bottom:10px;
+}
+header p{
+opacity:0.85;
+}
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+.search-box{
+margin:30px 0;
+}
+.search-box input{
+width:100%;
+padding:14px;
+font-size:16px;
+border:1px solid #ddd;
+border-radius:8px;
+}
+.blog-post{
+background:white;
+margin-bottom:30px;
+padding:30px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+.blog-date{
+font-size:14px;
+color:#777;
+margin-bottom:10px;
+}
+.blog-tag{
+display:inline-block;
+background:#e2e8f0;
+padding:6px 12px;
+border-radius:20px;
+font-size:13px;
+margin-bottom:15px;
+}
+.blog-post h2{
+margin-bottom:15px;
+font-size:28px;
+}
+.blog-excerpt{
+font-style:italic;
+color:#555;
+margin-bottom:20px;
+}
+.blog-content{
+margin-top:20px;
+}
+.blog-content h2,
+.blog-content h3{
+margin-top:25px;
+margin-bottom:10px;
+}
+.blog-content ul{
+padding-left:20px;
+}
+.back-home{
+display:inline-block;
+margin-bottom:25px;
+text-decoration:none;
+background:#0f172a;
+color:white;
+padding:12px 18px;
+border-radius:8px;
+}
+.loading{
+text-align:center;
+padding:40px;
+font-size:18px;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Latest Articles</h1>
+<p>Energy advice, EPC guidance and property insights</p>
+</header>
+<div class="container">
+<a href="index.html" class="back-home">
+← Back Home
+</a>
+<div class="search-box">
+<input
+type="text"
+id="search"
+placeholder="Search articles..."
+>
+</div>
+<div id="blogs">
+<div class="loading">Loading articles...</div>
+</div>
+</div>
+<script>
+const BLOG_CSV_URL =
+'https://docs.google.com/spreadsheets/d/e/2PACX-1vTb4g3K2c__kBay4SQK6T-YyLpy8h-YmZ4SPPO1_a35NY1D_87-92stgCQqIGDoRsfUX-C1Qo3_JDrH/pub?gid=132796952&single=true&output=csv';
+function parseCSVAll(csv) {
+const lines = csv.trim().split('\n');
+const headers = lines[0]
+.split(',')
+.map(h => h.trim().replace(/^"|"$/g,''));
+return lines.slice(1).map(line => {
+const values =
+line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
+const obj = {};
+headers.forEach((header,index)=>{
+obj[header] =
+(values[index] || '')
+.replace(/^"|"$/g,'')
+.replace(/""/g,'"');
+});
+return obj;
+});
+}
+async function loadBlogs(){
+try{
+const response = await fetch(
+BLOG_CSV_URL + '&cache=' + Date.now()
+);
+const text = await response.text();
+const rows = parseCSVAll(text);
+const published = rows.filter(
+r => (r['Published'] || '')
+.trim()
+.toLowerCase() === 'yes'
+);
+renderBlogs(published);
+}catch(error){
+document.getElementById('blogs').innerHTML =
+'<p>Unable to load blogs.</p>';
+console.error(error);
+}
+}
+function renderBlogs(posts){
+const container =
+document.getElementById('blogs');
+if(posts.length === 0){
+container.innerHTML =
+'<p>No published articles found.</p>';
+return;
+}
+container.innerHTML = posts.reverse().map(post => `
+<article class="blog-post">
+<div class="blog-date">
+${post['Date'] || ''}
+</div>
+<div class="blog-tag">
+${post['Tag'] || 'Article'}
+</div>
+<h2>
+${post['Title'] || 'Untitled'}
+</h2>
+<p class="blog-excerpt">
+${post['Excerpt'] || ''}
+</p>
+<div class="blog-content">
+${post['Blog'] || ''}
+</div>
+</article>
+`).join('');
+}
+document
+.getElementById('search')
+.addEventListener('input', function(){
+const term =
+this.value.toLowerCase();
+const posts =
+document.querySelectorAll('.blog-post');
+posts.forEach(post => {
+const text =
+post.innerText.toLowerCase();
+post.style.display =
+text.includes(term)
+? 'block'
+: 'none';
+});
+});
+loadBlogs();
+</script>
+</body>
+</html>
