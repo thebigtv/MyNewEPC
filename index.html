@@ -992,21 +992,25 @@
       const section = document.getElementById('blog-section');
       if (!grid || !section) return;
 
-      grid.innerHTML = published.map(post => {
-        const date    = post['Date']    || '';
-        const tag     = post['Tag']     || 'EPC Advice';
-        const title   = post['Title']   || 'Untitled Post';
-        const excerpt = post['Excerpt'] || '';
-        return `
-          <div class="blog-card">
-            <div class="blog-card-body">
-              <div class="blog-date">${date}</div>
-              <span class="blog-tag">${tag}</span>
-              <h3>${title}</h3>
-              <p>${excerpt}</p>
-            </div>
-          </div>`;
-      }).join('');
+      grid.innerHTML = published.map((post, idx) => {
+  const date    = post['Date']    || '';
+  const tag     = post['Tag']     || 'EPC Advice';
+  const title   = post['Title']   || 'Untitled Post';
+  const excerpt = post['Excerpt'] || '';
+  const slug    = title.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').slice(0,60);
+  const link    = 'blogs.html#' + slug;
+  return `
+    <a href="${link}" class="blog-card" style="color:inherit;text-decoration:none;">
+      <div class="blog-card-body">
+        <div class="blog-date">${date}</div>
+        <span class="blog-tag">${tag}</span>
+        <h3>${title}</h3>
+        <p>${excerpt}</p>
+        <p style="margin-top:12px;font-size:0.82rem;font-weight:700;color:var(--accent);">Read full article →</p>
+      </div>
+    </a>`;
+}).join('');
+
 
       section.style.display = 'block';
     }
