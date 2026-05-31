@@ -508,7 +508,6 @@
           </div>
           <div class="trust-row fu d5">
             <span class="trust-chip"><span class="dot"></span> Accredited &amp; Insured</span>
-            <span class="trust-chip"><span class="dot"></span> Same / Next Day Available</span>
             <span class="trust-chip"><span class="dot"></span> Certificate in <span id="trust-turnaround">&nbsp;24hrs</span></span>
           </div>
         </div>
@@ -561,15 +560,12 @@
           <div class="label">What I Offer</div>
           <h2>Energy Services That Keep You Compliant</h2>
         </div>
-        <p>Whether you're selling, renting, or need to meet MEES regulations, I provide fast, professional energy assessments across the whole area.</p>
+        <p>Whether you're selling, renting, or need to meet regulations, I provide fast, professional energy assessments across the whole area.</p>
       </div>
       <div class="services-grid">
         <div class="service-card"><span class="service-tag">Most Popular</span><div class="service-icon">🏠</div><h3>EPC for Property Sales</h3><p>A legal requirement when selling. I'll visit quickly, assess your property efficiently, and have your certificate registered on the national database — so your sale isn't held up.</p></div>
         <div class="service-card"><span class="service-tag">Landlords</span><div class="service-icon">🔑</div><h3>EPC for Rentals</h3><p>Properties must hold a valid EPC rated E or above to be legally let. Whether you have one rental or a full portfolio, I make compliance straightforward and hassle-free.</p></div>
-        <div class="service-card"><span class="service-tag">Compliance</span><div class="service-icon">📋</div><h3>MEES Compliance</h3><p>Minimum Energy Efficiency Standards are tightening. I can assess your property's current rating and advise on what improvements would bring you up to the required standard.</p></div>
         <div class="service-card"><div class="service-icon">🏢</div><h3>Energy Reviews</h3><p>Thinking about improving your property's energy efficiency? I provide clear, practical advice on what changes would make the biggest difference to your EPC rating and energy bills.</p></div>
-        <div class="service-card"><div class="service-icon">⚡</div><h3>Same Day Service</h3><p>Need it urgently? I offer same and next-day appointments for those times when you just can't wait. Call me directly and I'll do everything I can to fit you in fast.</p></div>
-        <div class="service-card"><div class="service-icon">🏗️</div><h3>New Builds &amp; Conversions</h3><p>Newly built or converted properties need an EPC before they can be sold or rented. I work with developers and landlords to get new properties assessed and certified quickly.</p></div>
       </div>
     </div>
   </section>
@@ -588,7 +584,7 @@
           <div class="label">About Me</div>
           <h2 id="about-heading">Your Local EPC Expert</h2>
           <p id="about-p1">Loading…</p>
-          <p id="about-p2">I understand that when you need an EPC, you often need it fast — whether you're putting a property on the market or making sure your rental meets MEES requirements. That's why I offer same and next-day appointments wherever possible, with your certificate delivered digitally within <span id="about-turnaround">24 hours</span> of the visit.</p>
+          <p id="about-p2">I understand that when you need an EPC, you often need it fast — whether you're putting a property on the market or making sure your rental meets requirements. That's why I offer same and next-day appointments wherever possible, with your certificate delivered digitally within <span id="about-turnaround">24 hours</span> of the visit.</p>
           <div class="pills">
             <span class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span id="pill-accred">Accredited DEA</span></span>
             <span class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span id="pill-years">Experienced Assessor</span></span>
@@ -730,9 +726,7 @@
                   <option value="">Select one…</option>
                   <option>Sale — residential</option>
                   <option>Rental — residential</option>
-                  <option>MEES compliance check</option>
                   <option>Energy review / advice</option>
-                  <option>New build / conversion</option>
                   <option>Not sure — please advise</option>
                 </select>
               </div>
@@ -768,7 +762,7 @@
         </div>
         <div>
           <h4>Services</h4>
-          <p>EPC for Sales</p><p>EPC for Rentals</p><p>MEES Compliance</p><p>Energy Reviews</p><p>New Builds</p>
+          <p>EPC for Sales</p><p>EPC for Rentals</p><p>Energy Reviews</p>
         </div>
       </div>
       <hr class="footer-hr" />
@@ -797,10 +791,10 @@
     // ================================================================
 
     // Tab 1: "Site Settings" — row 2 always live, no approval needed
-    const CSV_URL      = 'PASTE_SITE_SETTINGS_CSV_URL_HERE';
+    const CSV_URL      = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTb4g3K2c__kBay4SQK6T-YyLpy8h-YmZ4SPPO1_a35NY1D_87-92stgCQqIGDoRsfUX-C1Qo3_JDrH/pub?gid=132796952&single=true&output=csv';
 
     // Tab 2: "Blog Posts" — client adds rows, sets Published = Yes
-    const BLOG_CSV_URL = 'PASTE_BLOG_POSTS_CSV_URL_HERE';
+    const BLOG_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTb4g3K2c__kBay4SQK6T-YyLpy8h-YmZ4SPPO1_a35NY1D_87-92stgCQqIGDoRsfUX-C1Qo3_JDrH/pub?gid=1732319310&single=true&output=csv';
 
     // ================================================================
     // UTILITIES
@@ -885,7 +879,8 @@
       const avail  = row['Availability']       || 'Same and next-day appointments available';
       const towns  = row['Towns']              || '';
       const extra  = row['Additional Areas']   || '';
-      const photo  = row['Photo URL']          || '';
+      const photo = 'https://i.postimg.cc/4d4rYs51/att-Jn-UPETg4WCVR5b-Hq5Tsn-MJz-Rklos-XQDkd6nd-TOol9Jc.jpg';
+      const heroPhoto = document.getElementById('hero-photo');
 
       const allTowns  = buildAreaGrid(towns, extra);
       const shortArea = shortTownList(allTowns);
@@ -989,14 +984,6 @@
     //   Date | Tag | Title | Excerpt | Published
     // Published = Yes to show, anything else = hidden
     // ================================================================
-    function slugify(title) {
-      return title.toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .slice(0, 60);
-    }
-
     function populateBlog(rows) {
       const published = rows.filter(r => (r['Published'] || '').trim().toLowerCase() === 'yes');
       if (published.length === 0) return;
@@ -1005,23 +992,20 @@
       const section = document.getElementById('blog-section');
       if (!grid || !section) return;
 
-      grid.innerHTML = published.map((post, idx) => {
+      grid.innerHTML = published.map(post => {
         const date    = post['Date']    || '';
         const tag     = post['Tag']     || 'EPC Advice';
         const title   = post['Title']   || 'Untitled Post';
         const excerpt = post['Excerpt'] || '';
-        const slug    = slugify(title) || ('post-' + idx);
-        const link    = 'blogs.html#' + slug;
         return `
-          <a href="${link}" class="blog-card" style="display:flex;flex-direction:column;cursor:pointer;color:inherit;">
+          <div class="blog-card">
             <div class="blog-card-body">
               <div class="blog-date">${date}</div>
               <span class="blog-tag">${tag}</span>
               <h3>${title}</h3>
               <p>${excerpt}</p>
-              <p style="margin-top:12px;font-size:0.82rem;font-weight:700;color:var(--accent);">Read full article →</p>
             </div>
-          </a>`;
+          </div>`;
       }).join('');
 
       section.style.display = 'block';
@@ -1060,8 +1044,6 @@
 
       // Always set year fallback
       const yr = document.getElementById('yr'); if (yr && !yr.textContent) yr.textContent = new Date().getFullYear();
-      buildAreaGrid('Your Town, Nearby Town, Another Area');
-
       setTimeout(() => loader.classList.add('hidden'), 700);
     }
 
