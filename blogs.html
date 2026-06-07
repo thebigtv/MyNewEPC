@@ -417,34 +417,27 @@
       var pubIdx     = headers.indexOf('Published');
 
       var posts = [];
-      var currentPost = null;
 
       for (var i = 1; i < lines.length; i++) {
+        var line = lines[i].trim();
+        if (!line) continue;
+
         var cols = splitLine(lines[i]).map(function(c) { return c.trim().replace(/^"|"$/g, ''); });
+        var title = titleIdx >= 0 ? (cols[titleIdx] || '') : '';
+        var pub   = pubIdx   >= 0 ? (cols[pubIdx]   || '').toLowerCase().trim() : '';
 
-        var title = cols[titleIdx] || '';
-        var pub   = (cols[pubIdx] || '').toLowerCase();
-        var blog  = cols[blogIdx] || '';
+        if (!title || pub !== 'yes') continue;
 
-        // A row with a Title starts a new post
-        if (title) {
-          if (currentPost) posts.push(currentPost);
-          currentPost = {
-            date:    cols[dateIdx]    || '',
-            tag:     cols[tagIdx]     || 'EPC Advice',
-            title:   title,
-            excerpt: cols[excerptIdx] || '',
-            blog:    blog,
-            published: pub === 'yes'
-          };
-        } else if (currentPost && blog) {
-          // Continuation row — append blog HTML
-          currentPost.blog += '\n' + blog;
-        }
+        posts.push({
+          date:    dateIdx    >= 0 ? (cols[dateIdx]    || '') : '',
+          tag:     tagIdx     >= 0 ? (cols[tagIdx]     || 'EPC Advice') : 'EPC Advice',
+          title:   title,
+          excerpt: excerptIdx >= 0 ? (cols[excerptIdx] || '') : '',
+          blog:    blogIdx    >= 0 ? (cols[blogIdx]    || '') : ''
+        });
       }
-      if (currentPost) posts.push(currentPost);
 
-      return posts.filter(function(p) { return p.published; });
+      return posts;
     }
 
     // ── SLUG from title ──
