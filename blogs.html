@@ -485,7 +485,7 @@
               post.excerpt ? '<p class="post-excerpt">' + post.excerpt + '</p>' : '',
             '</div>',
             hasContent
-              ? '<div class="post-body">' + post.blog + '</div>'
+              ? '<div class="post-body">' + formatBlog(post.blog) + '</div>'
               : '<div class="post-no-content">Full article coming soon.</div>',
             '<div class="post-footer">',
               '<a href="#" class="back-to-top" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;">',
