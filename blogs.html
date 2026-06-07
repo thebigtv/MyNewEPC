@@ -448,7 +448,18 @@
         .replace(/-+/g, '-')
         .slice(0, 60);
     }
-
+    function formatBlog(text) {
+  return text
+    .split('\n\n')
+    .map(p => {
+      if (p.endsWith('?') || p.length < 60) {
+        return '<h2>' + p + '</h2>';
+      }
+      return '<p>' + p + '</p>';
+    })
+    .join('');
+}
+    
     // ── RENDER POSTS ──
     function renderPosts(posts) {
       var list = document.getElementById('blog-list');
