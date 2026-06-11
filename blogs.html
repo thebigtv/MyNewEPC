@@ -462,6 +462,16 @@
     
     // ── RENDER POSTS ──
     function renderPosts(posts) {
+      posts.sort(function(a, b) {
+
+  function parseUKDate(dateStr) {
+    var parts = dateStr.split('/');
+    return new Date(parts[2], parts[1] - 1, parts[0]);
+  }
+
+  return parseUKDate(b.date) - parseUKDate(a.date);
+
+});
       var list = document.getElementById('blog-list');
       var none = document.getElementById('no-posts');
 
