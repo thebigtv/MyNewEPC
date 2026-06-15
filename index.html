@@ -985,36 +985,60 @@
     // Published = Yes to show, anything else = hidden
     // ================================================================
     function populateBlog(rows) {
-      const published = rows.filter(r => (r['Published'] || '').trim().toLowerCase() === 'yes');
-      if (published.length === 0) return;
 
-      const grid = document.getElementById('blog-grid');
-      const section = document.getElementById('blog-section');
-      if (!grid || !section) return;
+  const published = rows.filter(r =>
+    (r['Published'] || '').trim().toLowerCase() === 'yes'
+  );
 
-      grid.innerHTML = published.map((post, idx) => {
-  const date    = post['Date']    || '';
-  const tag     = post['Tag']     || 'EPC Advice';
-  const title   = post['Title']   || 'Untitled Post';
-  const excerpt = post['Excerpt'] || '';
-  const slug    = title.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').slice(0,60);
-  const link    = 'blogs.html#' + slug;
-  return `
-    <a href="${link}" class="blog-card" style="color:inherit;text-decoration:none;">
-      <div class="blog-card-body">
-        <div class="blog-date">${date}</div>
-        <span class="blog-tag">${tag}</span>
-        <h3>${title}</h3>
-        <p>${excerpt}</p>
-        <p style="margin-top:12px;font-size:0.82rem;font-weight:700;color:var(--accent);">Read full article →</p>
-      </div>
-    </a>`;
-}).join('');
+  if (published.length === 0) return;
 
+  function parseUKDate(dateStr) {
+    const parts = dateStr.split('/');
+    if (parts.length !== 3) return new Date(0);
 
-      section.style.display = 'block';
-    }
+    return new Date(
+      parseInt(parts[2], 10),
+      parseInt(parts[1], 10) - 1,
+      parseInt(parts[0], 10)
+    );
+  }
 
+  published.sort((a, b) =>
+    parseUKDate(b['Date'] || '') - parseUKDate(a['Date'] || '')
+  );
+
+  const latestPosts = published.slice(0, 3);
+
+  const grid = document.getElementById('blog-grid');
+  const section = document.getElementById('blog-section');
+  if (!grid || !section) return;
+
+  grid.innerHTML = latestPosts.map((post, idx) => {
+    const date    = post['Date']    || '';
+    const tag     = post['Tag']     || 'EPC Advice';
+    const title   = post['Title']   || 'Untitled Post';
+    const excerpt = post['Excerpt'] || '';
+    const slug    = title.toLowerCase()
+      .replace(/[^a-z0-9\s-]/g,'')
+      .replace(/\s+/g,'-')
+      .slice(0,60);
+
+    const link = 'blogs.html#' + slug;
+
+    return `
+      <a href="${link}" class="blog-card" style="color:inherit;text-decoration:none;">
+        <div class="blog-card-body">
+          <div class="blog-date">${date}</div>
+          <span class="blog-tag">${tag}</span>
+          <h3>${title}</h3>
+          <p>${excerpt}</p>
+          <p style="margin-top:12px;font-size:0.82rem;font-weight:700;color:var(--accent);">Read full article →</p>
+        </div>
+      </a>`;
+  }).join('');
+
+  section.style.display = 'block';
+}
     // ================================================================
     // FETCH & INIT
     // ================================================================
