@@ -461,11 +461,17 @@
 }
     
     // ── RENDER POSTS ──
-    function renderPosts(posts) {
+function renderPosts(posts) {
 
   function parseUKDate(dateStr) {
     var parts = dateStr.split('/');
-    return new Date(parts[2], parts[1] - 1, parts[0]);
+    if (parts.length !== 3) return new Date(0);
+
+    return new Date(
+      parseInt(parts[2], 10),
+      parseInt(parts[1], 10) - 1,
+      parseInt(parts[0], 10)
+    );
   }
 
   posts.sort(function(a, b) {
@@ -474,15 +480,6 @@
 
   var list = document.getElementById('blog-list');
   var none = document.getElementById('no-posts');
-
-  if (!posts.length) {
-    none.style.display = 'block';
-    return;
-  }
-
-  // Rest of your code...
-}
-
       list.innerHTML = posts.map(function(post, idx) {
         var slug = slugify(post.title) || ('post-' + idx);
         var hasContent = post.blog && post.blog.trim().length > 0;
