@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EPC Advice & News | Energy Performance Certificate Tips</title>
-  <meta name="description" content="Useful advice for homeowners, landlords and estate agents on EPC certificates, energy efficiency and property compliance." />
+  <title>EPC Advice &amp; News | Energy Performance Certificate Tips</title>
+  <meta name="description" id="meta-desc" content="Useful advice for homeowners, landlords and estate agents on EPC certificates, energy efficiency and property compliance." />
   <meta name="robots" content="index, follow" />
+  <link rel="canonical" id="meta-canonical" href="blogs.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" id="og-title" content="EPC Advice &amp; News | Energy Performance Certificate Tips" />
+  <meta property="og:description" id="og-desc" content="Useful advice for homeowners, landlords and estate agents on EPC certificates, energy efficiency and property compliance." />
+  <meta property="og:url" id="og-url" content="blogs.html" />
+
+  <!-- JSON-LD populated by JS for single post view -->
+  <script type="application/ld+json" id="schema-post"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,7 +65,6 @@
     p  { margin-bottom: 1.1em; }
     p:last-child { margin-bottom: 0; }
 
-    /* ── LOADING ── */
     #loading-screen {
       position: fixed; inset: 0; z-index: 9999;
       background: var(--ink);
@@ -69,7 +78,6 @@
     @keyframes load { to { width: 100%; } }
     .loader-text { color: var(--ink-light); font-size: 0.84rem; }
 
-    /* ── HEADER ── */
     .site-header {
       background: rgba(13,27,42,0.97);
       backdrop-filter: blur(12px);
@@ -90,10 +98,7 @@
       letter-spacing: 0.06em; text-transform: uppercase;
     }
     .header-nav { display: flex; align-items: center; gap: 16px; }
-    .header-nav a {
-      color: #94A8BC; font-size: 0.88rem; font-weight: 500;
-      transition: color 0.15s;
-    }
+    .header-nav a { color: #94A8BC; font-size: 0.88rem; font-weight: 500; transition: color 0.15s; }
     .header-nav a:hover { color: #fff; }
     .header-call {
       display: flex; align-items: center; gap: 7px;
@@ -104,15 +109,13 @@
     }
     .header-call:hover { background: #156040; }
 
-    /* ── PAGE HERO ── */
     .page-hero {
       background: linear-gradient(135deg, var(--ink) 0%, #1B3A5C 100%);
       padding: 80px 0 60px;
       position: relative; overflow: hidden;
     }
     .page-hero::before {
-      content: '';
-      position: absolute; inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: radial-gradient(ellipse 70% 60% at 60% 50%, rgba(27,108,168,0.18) 0%, transparent 65%);
       pointer-events: none;
     }
@@ -126,11 +129,9 @@
     .page-hero h1 { color: #fff; margin-bottom: 14px; }
     .page-hero p { color: #94A8BC; font-size: 1.05rem; max-width: 520px; }
 
-    /* ── BLOG LIST ── */
     .blog-section { padding: 72px 0; }
     .blog-list { display: flex; flex-direction: column; gap: 0; }
 
-    /* ── INDIVIDUAL POST ── */
     .blog-post {
       background: var(--surface);
       border-radius: var(--r-lg);
@@ -138,7 +139,7 @@
       box-shadow: var(--sh-sm);
       margin-bottom: 40px;
       overflow: hidden;
-      scroll-margin-top: 90px; /* offset for sticky header */
+      scroll-margin-top: 90px;
     }
     .post-header {
       padding: 36px 40px 28px;
@@ -155,14 +156,9 @@
       background: var(--accent-lt); color: var(--accent);
       padding: 4px 12px; border-radius: 100px;
     }
-    .post-date {
-      font-size: 0.82rem; color: var(--ink-light); font-weight: 500;
-    }
+    .post-date { font-size: 0.82rem; color: var(--ink-light); font-weight: 500; }
     .post-header h2 { color: var(--ink); font-size: clamp(1.3rem, 2.5vw, 1.8rem); }
-    .post-excerpt {
-      font-size: 0.95rem; color: var(--ink-mid);
-      margin-top: 10px; max-width: 700px;
-    }
+    .post-excerpt { font-size: 0.95rem; color: var(--ink-mid); margin-top: 10px; max-width: 700px; }
 
     .post-body {
       padding: 36px 40px;
@@ -170,13 +166,7 @@
       color: var(--ink-mid);
       line-height: 1.8;
     }
-
-    /* Prose styles inside post body */
-    .post-body h2 {
-      font-size: 1.4rem; margin: 32px 0 14px;
-      color: var(--ink); padding-top: 8px;
-      border-top: 2px solid var(--accent-lt);
-    }
+    .post-body h2 { font-size: 1.4rem; margin: 32px 0 14px; color: var(--ink); padding-top: 8px; border-top: 2px solid var(--accent-lt); }
     .post-body h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
     .post-body h3 { font-size: 1.1rem; margin: 24px 0 10px; color: var(--ink); }
     .post-body p { margin-bottom: 1.1em; }
@@ -195,7 +185,6 @@
       color: var(--ink);
     }
 
-    /* No content placeholder */
     .post-no-content {
       padding: 28px 40px;
       font-size: 0.9rem; color: var(--ink-light);
@@ -203,7 +192,6 @@
       border-top: 1.5px solid var(--rule);
     }
 
-    /* ── BACK TO TOP ── */
     .post-footer {
       padding: 16px 40px;
       background: var(--canvas);
@@ -217,14 +205,17 @@
     .back-to-top:hover { color: var(--accent-dk); }
     .share-hint { font-size: 0.78rem; color: var(--ink-light); }
 
-    /* ── EMPTY STATE ── */
-    #no-posts {
-      text-align: center; padding: 80px 24px;
-      display: none;
-    }
+    #no-posts { text-align: center; padding: 80px 24px; display: none; }
     #no-posts h3 { color: var(--ink-light); font-size: 1.1rem; }
 
-    /* ── CTA BAND ── */
+    #back-to-list-wrap { margin-bottom: 8px; }
+    .back-to-list {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.86rem; font-weight: 600; color: var(--accent);
+      transition: color 0.15s;
+    }
+    .back-to-list:hover { color: var(--accent-dk); }
+
     .cta-band {
       background: linear-gradient(135deg, var(--ink) 0%, #1B3A5C 100%);
       padding: 60px 0; text-align: center;
@@ -245,22 +236,14 @@
     .btn-outline:hover { background: rgba(255,255,255,0.1); }
     .btn-group { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; }
 
-    /* ── FOOTER ── */
-    .site-footer {
-      background: var(--ink); padding: 40px 0 24px;
-      color: #5A7A94;
-    }
+    .site-footer { background: var(--ink); padding: 40px 0 24px; color: #5A7A94; }
     .site-footer a { color: #7EC8F0; }
-    .footer-inner {
-      display: flex; flex-wrap: wrap; justify-content: space-between;
-      gap: 20px; margin-bottom: 28px;
-    }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin-bottom: 28px; }
     .site-footer h4 { font-family: var(--ff-display); color: #fff; font-size: 1rem; margin-bottom: 8px; }
     .site-footer p, .site-footer a { font-size: 0.86rem; line-height: 1.8; }
     .footer-hr { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin-bottom: 16px; }
     .footer-bottom { font-size: 0.76rem; color: #3A5A74; text-align: center; }
 
-    /* ── MOBILE STICKY CALL ── */
     .mob-call {
       display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 800;
       background: var(--green); color: #fff;
@@ -280,14 +263,12 @@
 </head>
 <body>
 
-  <!-- LOADING -->
   <div id="loading-screen">
     <div class="loader-logo" id="loader-name">EPC Blog</div>
     <div class="loader-bar"><div class="loader-fill"></div></div>
-    <div class="loader-text">Loading posts…</div>
+    <div class="loader-text">Loading posts&hellip;</div>
   </div>
 
-  <!-- HEADER -->
   <header class="site-header">
     <div class="site-header-brand">
       <div>
@@ -305,28 +286,26 @@
     </nav>
   </header>
 
-  <!-- PAGE HERO -->
   <div class="page-hero">
     <div class="container page-hero-inner">
       <div class="label">News &amp; Advice</div>
-      <h1>EPC Tips &amp; Updates</h1>
-      <p>Useful advice for homeowners, landlords and estate agents on energy certificates, efficiency improvements and property compliance.</p>
+      <h1 id="page-hero-title">EPC Tips &amp; Updates</h1>
+      <p id="page-hero-desc">Useful advice for homeowners, landlords and estate agents on energy certificates, efficiency improvements and property compliance.</p>
     </div>
   </div>
 
-  <!-- BLOG POSTS -->
   <section class="blog-section">
     <div class="container">
-      <div class="blog-list" id="blog-list">
-        <!-- Posts injected by JS -->
+      <div id="back-to-list-wrap" style="display:none;">
+        <a href="blogs.html" class="back-to-list">&#8592; All posts</a>
       </div>
+      <div class="blog-list" id="blog-list"></div>
       <div id="no-posts">
-        <h3>No posts published yet — check back soon.</h3>
+        <h3>No posts published yet &mdash; check back soon.</h3>
       </div>
     </div>
   </section>
 
-  <!-- CTA BAND -->
   <div class="cta-band">
     <div class="container">
       <h2>Need an EPC <em>Quickly?</em></h2>
@@ -341,7 +320,6 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-inner">
@@ -351,8 +329,8 @@
         </div>
         <div>
           <h4>Contact</h4>
-          <p id="footer-phone">—</p>
-          <p><a id="footer-email" href="#">—</a></p>
+          <p id="footer-phone">&mdash;</p>
+          <p><a id="footer-email" href="#">&mdash;</a></p>
         </div>
         <div>
           <h4>Quick Links</h4>
@@ -363,23 +341,29 @@
       </div>
       <hr class="footer-hr" />
       <div class="footer-bottom">
-        <p>© <span id="yr"></span> <span id="footer-copy">EPC Assessor</span>. All rights reserved. EPC assessments carried out in accordance with government regulations.</p>
+        <p>&copy; <span id="yr"></span> <span id="footer-copy">EPC Assessor</span>. All rights reserved. EPC assessments carried out in accordance with government regulations.</p>
       </div>
     </div>
   </footer>
 
-  <!-- MOBILE CALL -->
   <a id="mob-call" href="tel:07494174056" class="mob-call" aria-label="Call now">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.29 6.29l.96-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     <span id="mob-call-label">Tap to Call</span>
   </a>
 
   <script>
-    // ── SHEET URLs ──
-    const SETTINGS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTb4g3K2c__kBay4SQK6T-YyLpy8h-YmZ4SPPO1_a35NY1D_87-92stgCQqIGDoRsfUX-C1Qo3_JDrH/pub?gid=132796952&single=true&output=csv';
-    const BLOG_URL     = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTb4g3K2c__kBay4SQK6T-YyLpy8h-YmZ4SPPO1_a35NY1D_87-92stgCQqIGDoRsfUX-C1Qo3_JDrH/pub?gid=1732319310&single=true&output=csv';
+    // ================================================================
+    // CONFIG
+    // ================================================================
+    var SETTINGS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTb4g3K2c__kBay4SQK6T-YyLpy8h-YmZ4SPPO1_a35NY1D_87-92stgCQqIGDoRsfUX-C1Qo3_JDrH/pub?gid=132796952&single=true&output=csv';
+    var BLOG_URL     = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTb4g3K2c__kBay4SQK6T-YyLpy8h-YmZ4SPPO1_a35NY1D_87-92stgCQqIGDoRsfUX-C1Qo3_JDrH/pub?gid=1732319310&single=true&output=csv';
 
-    // ── CSV PARSER ──
+    // Global state — populated once on load
+    var STATE = { posts: [], businessName: 'EPC Assessor' };
+
+    // ================================================================
+    // CSV PARSERS
+    // ================================================================
     function splitLine(line) {
       var result = [], cur = '', inQ = false;
       for (var i = 0; i < line.length; i++) {
@@ -402,32 +386,24 @@
       return row;
     }
 
-    // ── BLOG CSV PARSER ──
-    // The Blog column spans multiple rows — stitch them together per post
     function parseBlogCSV(text) {
       var lines = text.trim().split('\n');
       if (lines.length < 2) return [];
-
-      var headers = splitLine(lines[0]).map(function(h) { return h.trim(); });
+      var headers    = splitLine(lines[0]).map(function(h) { return h.trim(); });
       var dateIdx    = headers.indexOf('Date');
       var tagIdx     = headers.indexOf('Tag');
       var titleIdx   = headers.indexOf('Title');
       var excerptIdx = headers.indexOf('Excerpt');
       var blogIdx    = headers.indexOf('Blog');
       var pubIdx     = headers.indexOf('Published');
-
       var posts = [];
-
       for (var i = 1; i < lines.length; i++) {
         var line = lines[i].trim();
         if (!line) continue;
-
-        var cols = splitLine(lines[i]).map(function(c) { return c.trim().replace(/^"|"$/g, ''); });
+        var cols  = splitLine(lines[i]).map(function(c) { return c.trim().replace(/^"|"$/g, ''); });
         var title = titleIdx >= 0 ? (cols[titleIdx] || '') : '';
         var pub   = pubIdx   >= 0 ? (cols[pubIdx]   || '').toLowerCase().trim() : '';
-
         if (!title || pub !== 'yes') continue;
-
         posts.push({
           date:    dateIdx    >= 0 ? (cols[dateIdx]    || '') : '',
           tag:     tagIdx     >= 0 ? (cols[tagIdx]     || 'EPC Advice') : 'EPC Advice',
@@ -436,11 +412,12 @@
           blog:    blogIdx    >= 0 ? (cols[blogIdx]    || '') : ''
         });
       }
-
       return posts;
     }
 
-    // ── SLUG from title ──
+    // ================================================================
+    // UTILITIES
+    // ================================================================
     function slugify(title) {
       return title.toLowerCase()
         .replace(/[^a-z0-9\s-]/g, '')
@@ -448,102 +425,256 @@
         .replace(/-+/g, '-')
         .slice(0, 60);
     }
-    function formatBlog(text) {
-  return text
-    .split('\n\n')
-    .map(p => {
-      if (p.endsWith('?') || p.length < 60) {
-        return '<h2>' + p + '</h2>';
+
+    function parseUKDate(dateStr) {
+      if (!dateStr) return new Date(0);
+      var parts = dateStr.split('/');
+      if (parts.length === 3) {
+        return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
       }
-      return '<p>' + p + '</p>';
-    })
-    .join('');
-}
-    
-    // ── RENDER POSTS ──
-function renderPosts(posts) {
+      var d = new Date(dateStr);
+      return isNaN(d) ? new Date(0) : d;
+    }
 
-  function parseUKDate(dateStr) {
-    var parts = dateStr.split('/');
-    if (parts.length !== 3) return new Date(0);
+    function toISODate(dateStr) {
+      var d = parseUKDate(dateStr);
+      if (!d || d.getTime() === 0) return '';
+      return d.toISOString().split('T')[0];
+    }
 
-    return new Date(
-      parseInt(parts[2], 10),
-      parseInt(parts[1], 10) - 1,
-      parseInt(parts[0], 10)
-    );
-  }
+    function formatBlog(text) {
+      return text.split('\n\n').map(function(p) {
+        p = p.trim();
+        if (!p) return '';
+        if (p.endsWith('?') || p.length < 60) return '<h2>' + p + '</h2>';
+        return '<p>' + p + '</p>';
+      }).filter(Boolean).join('');
+    }
 
-  posts.sort(function(a, b) {
-    return parseUKDate(b.date) - parseUKDate(a.date);
-  });
+    function findPostBySlug(slug) {
+      for (var i = 0; i < STATE.posts.length; i++) {
+        if (slugify(STATE.posts[i].title) === slug) return STATE.posts[i];
+      }
+      return null;
+    }
 
-  var list = document.getElementById('blog-list');
-  var none = document.getElementById('no-posts');
+    function getPostParam() {
+      var params = new URLSearchParams(window.location.search);
+      return params.get('post') || '';
+    }
+
+    // ================================================================
+    // META / SEO
+    // ================================================================
+    function setAttr(id, attr, value) {
+      var el = document.getElementById(id);
+      if (el && value) el.setAttribute(attr, value);
+    }
+
+    function resetToListMeta() {
+      var baseTitle = 'EPC Advice & News | Energy Performance Certificate Tips';
+      var baseDesc  = 'Useful advice for homeowners, landlords and estate agents on EPC certificates, energy efficiency and property compliance.';
+      var baseUrl   = window.location.origin + window.location.pathname;
+      document.title = baseTitle;
+      setAttr('meta-desc',      'content', baseDesc);
+      setAttr('meta-canonical', 'href',    baseUrl);
+      setAttr('og-title',       'content', baseTitle);
+      setAttr('og-desc',        'content', baseDesc);
+      setAttr('og-url',         'content', baseUrl);
+      var schema = document.getElementById('schema-post');
+      if (schema) schema.textContent = '';
+      var ht = document.getElementById('page-hero-title');
+      var hd = document.getElementById('page-hero-desc');
+      if (ht) ht.textContent = 'EPC Tips & Updates';
+      if (hd) hd.textContent = 'Useful advice for homeowners, landlords and estate agents on energy certificates, efficiency improvements and property compliance.';
+    }
+
+    function applyPostMeta(post) {
+      var slug    = slugify(post.title);
+      var pageUrl = window.location.origin + window.location.pathname + '?post=' + slug;
+      var title   = post.title + ' | ' + STATE.businessName;
+      var desc    = post.excerpt || post.title;
+      document.title = title;
+      setAttr('meta-desc',      'content', desc);
+      setAttr('meta-canonical', 'href',    pageUrl);
+      setAttr('og-title',       'content', title);
+      setAttr('og-desc',        'content', desc);
+      setAttr('og-url',         'content', pageUrl);
+      var ht = document.getElementById('page-hero-title');
+      var hd = document.getElementById('page-hero-desc');
+      if (ht) ht.textContent = post.title;
+      if (hd && post.excerpt) hd.textContent = post.excerpt;
+      var schemaObj = {
+        '@context':         'https://schema.org',
+        '@type':            'BlogPosting',
+        'headline':         post.title,
+        'description':      desc,
+        'datePublished':    toISODate(post.date),
+        'author':    { '@type': 'Person',       'name': STATE.businessName },
+        'publisher': { '@type': 'Organization', 'name': STATE.businessName },
+        'mainEntityOfPage': { '@type': 'WebPage', '@id': pageUrl }
+      };
+      var schema = document.getElementById('schema-post');
+      if (schema) schema.textContent = JSON.stringify(schemaObj);
+    }
+
+    // ================================================================
+    // RENDER — LIST VIEW
+    // ================================================================
+    function renderAllPosts(posts) {
+      var list     = document.getElementById('blog-list');
+      var none     = document.getElementById('no-posts');
+      var backWrap = document.getElementById('back-to-list-wrap');
+      if (backWrap) backWrap.style.display = 'none';
+      if (!posts || !posts.length) {
+        if (none) none.style.display = 'block';
+        return;
+      }
+      if (none) none.style.display = 'none';
       list.innerHTML = posts.map(function(post, idx) {
-        var slug = slugify(post.title) || ('post-' + idx);
+        var slug       = slugify(post.title) || ('post-' + idx);
         var hasContent = post.blog && post.blog.trim().length > 0;
-
+        var postUrl    = 'blogs.html?post=' + slug;
         return [
           '<article class="blog-post" id="' + slug + '">',
             '<div class="post-header">',
               '<div class="post-meta">',
-                post.tag ? '<span class="post-tag">' + post.tag + '</span>' : '',
+                post.tag  ? '<span class="post-tag">'  + post.tag  + '</span>' : '',
                 post.date ? '<span class="post-date">' + post.date + '</span>' : '',
               '</div>',
-              '<h2>' + post.title + '</h2>',
+              '<h2><a href="' + postUrl + '" style="color:inherit;text-decoration:none;">' + post.title + '</a></h2>',
               post.excerpt ? '<p class="post-excerpt">' + post.excerpt + '</p>' : '',
             '</div>',
             hasContent
               ? '<div class="post-body">' + formatBlog(post.blog) + '</div>'
               : '<div class="post-no-content">Full article coming soon.</div>',
             '<div class="post-footer">',
-              '<a href="#" class="back-to-top" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;">',
-                '↑ Back to top',
-              '</a>',
+              '<a href="' + postUrl + '" class="back-to-top">Read full article &rarr;</a>',
               '<span class="share-hint">Share this article with your agent or landlord</span>',
             '</div>',
           '</article>'
         ].join('');
       }).join('');
+    }
 
-      // After render, check for hash in URL and scroll to it
-      if (window.location.hash) {
-        var target = document.querySelector(window.location.hash);
-        if (target) {
-          setTimeout(function() {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 200);
+    // ================================================================
+    // RENDER — SINGLE POST VIEW
+    // ================================================================
+    function renderSinglePost(post) {
+      var list     = document.getElementById('blog-list');
+      var none     = document.getElementById('no-posts');
+      var backWrap = document.getElementById('back-to-list-wrap');
+      if (none)     none.style.display     = 'none';
+      if (backWrap) backWrap.style.display = 'block';
+      var hasContent = post.blog && post.blog.trim().length > 0;
+      list.innerHTML = [
+        '<article class="blog-post" id="' + slugify(post.title) + '">',
+          '<div class="post-header">',
+            '<div class="post-meta">',
+              post.tag  ? '<span class="post-tag">'  + post.tag  + '</span>' : '',
+              post.date ? '<span class="post-date">' + post.date + '</span>' : '',
+            '</div>',
+            '<h2>' + post.title + '</h2>',
+            post.excerpt ? '<p class="post-excerpt">' + post.excerpt + '</p>' : '',
+          '</div>',
+          hasContent
+            ? '<div class="post-body">' + formatBlog(post.blog) + '</div>'
+            : '<div class="post-no-content">Full article coming soon.</div>',
+          '<div class="post-footer">',
+            '<a href="blogs.html" class="back-to-top">&larr; All posts</a>',
+            '<span class="share-hint">Share this article with your agent or landlord</span>',
+          '</div>',
+        '</article>'
+      ].join('');
+    }
+
+    // ================================================================
+    // ROUTER
+    // ================================================================
+    function route() {
+      // Redirect legacy hash URLs to ?post= equivalent
+      if (window.location.hash && !getPostParam()) {
+        var hashSlug = window.location.hash.replace('#', '');
+        if (hashSlug) {
+          history.replaceState({ post: hashSlug }, '', window.location.pathname + '?post=' + hashSlug);
         }
+      }
+
+      var slug = getPostParam();
+
+      if (slug) {
+        var post = findPostBySlug(slug);
+        if (post) {
+          applyPostMeta(post);
+          renderSinglePost(post);
+          window.scrollTo(0, 0);
+        } else {
+          // Slug not found — fall back to list gracefully
+          resetToListMeta();
+          renderAllPosts(STATE.posts);
+        }
+      } else {
+        resetToListMeta();
+        renderAllPosts(STATE.posts);
       }
     }
 
-    // ── PHONE / SETTINGS POPULATE ──
+    // ================================================================
+    // HISTORY — back/forward support
+    // ================================================================
+    window.addEventListener('popstate', function() { route(); });
+
+    // Intercept clicks on internal blog links to use pushState
+    document.addEventListener('click', function(e) {
+      var anchor = e.target.closest('a[href]');
+      if (!anchor) return;
+      var href = anchor.getAttribute('href') || '';
+      if (href.indexOf('blogs.html') === -1) return;
+
+      var url  = new URL(anchor.href, window.location.href);
+      var slug = url.searchParams.get('post');
+
+      if (slug) {
+        e.preventDefault();
+        history.pushState({ post: slug }, '', url.pathname + '?post=' + slug);
+        route();
+        window.scrollTo(0, 0);
+      } else if (!url.search && url.pathname === window.location.pathname) {
+        // Back to list link
+        e.preventDefault();
+        history.pushState({ post: null }, '', url.pathname);
+        route();
+        window.scrollTo(0, 0);
+      }
+    });
+
+    // ================================================================
+    // SETTINGS
+    // ================================================================
     function applySettings(row) {
-      var phone  = row['Phone'] || '';
-      var name   = row['Name']  || 'EPC Assessor';
-      var email  = row['Email'] || '';
+      var phone = row['Phone'] || '';
+      var name  = row['Name']  || 'EPC Assessor';
+      var email = row['Email'] || '';
+
+      STATE.businessName = name;
 
       function cleanPhone(p) { return p.replace(/\s+/g, ''); }
 
       document.getElementById('yr').textContent          = new Date().getFullYear();
       document.getElementById('loader-name').textContent = name;
       document.getElementById('hdr-name').textContent    = name;
-      document.getElementById('footer-name').textContent = name + ' — EPC Assessor';
+      document.getElementById('footer-name').textContent = name + ' \u2014 EPC Assessor';
       document.getElementById('footer-copy').textContent = name;
 
       if (phone) {
         var tel = 'tel:' + cleanPhone(phone);
-        ['hdr-call','cta-call','mob-call'].forEach(function(id) {
+        ['hdr-call', 'cta-call', 'mob-call'].forEach(function(id) {
           var el = document.getElementById(id);
           if (el) el.href = tel;
         });
-        var hp = document.getElementById('hdr-phone');
-        if (hp) hp.textContent = phone;
-        var fp = document.getElementById('footer-phone');
-        if (fp) fp.textContent = phone;
-        var ml = document.getElementById('mob-call-label');
-        if (ml) ml.textContent = 'Tap to Call: ' + phone;
+        var hp = document.getElementById('hdr-phone');    if (hp) hp.textContent = phone;
+        var fp = document.getElementById('footer-phone'); if (fp) fp.textContent = phone;
+        var ml = document.getElementById('mob-call-label'); if (ml) ml.textContent = 'Tap to Call: ' + phone;
       }
 
       if (email) {
@@ -552,36 +683,36 @@ function renderPosts(posts) {
       }
     }
 
-    // ── INIT ──
+    // ================================================================
+    // INIT
+    // ================================================================
     async function init() {
       var loader = document.getElementById('loading-screen');
       var bust   = '&cachebust=' + Date.now();
 
-      var [settingsRes, blogRes] = await Promise.allSettled([
+      var results = await Promise.allSettled([
         fetch(SETTINGS_URL + bust),
         fetch(BLOG_URL + bust)
       ]);
 
-      // Settings
       try {
-        if (settingsRes.status === 'fulfilled') {
-          var text = await settingsRes.value.text();
+        if (results[0].status === 'fulfilled') {
+          var text = await results[0].value.text();
           var row  = parseCSVSingle(text);
           if (row) applySettings(row);
         }
       } catch(e) { console.warn('Settings error', e); }
 
-      // Blog posts
       try {
-        if (blogRes.status === 'fulfilled') {
-          var text = await blogRes.value.text();
+        if (results[1].status === 'fulfilled') {
+          var text  = await results[1].value.text();
           var posts = parseBlogCSV(text);
-          renderPosts(posts);
+          posts.sort(function(a, b) { return parseUKDate(b.date) - parseUKDate(a.date); });
+          STATE.posts = posts;
         }
-      } catch(e) {
-        console.warn('Blog error', e);
-        document.getElementById('no-posts').style.display = 'block';
-      }
+      } catch(e) { console.warn('Blog error', e); }
+
+      route();
 
       document.getElementById('yr').textContent = new Date().getFullYear();
       setTimeout(function() { loader.classList.add('hidden'); }, 600);
